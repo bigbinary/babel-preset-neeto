@@ -4,7 +4,22 @@
   "description": "A babel preset to transform short code to boilerplate at compile time",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "{package.json}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    ".eslint-rules/**/*": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "keywords": [
     "babel",
@@ -15,9 +30,32 @@
   "devDependencies": {
     "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.4",
+    "@babel/eslint-parser": "7.17.0",
+    "@babel/plugin-syntax-dynamic-import": "7.8.3",
+    "@babel/plugin-transform-runtime": "7.19.1",
+    "@babel/preset-env": "7.17.10",
+    "@babel/preset-react": "7.16.7",
+    "@bigbinary/eslint-plugin-neeto": "^1.0.30",
     "@bigbinary/neeto-commons-frontend": "^2.0.63",
+    "babel-plugin-dynamic-import-node": "2.3.3",
+    "babel-plugin-macros": "3.1.0",
     "babel-plugin-tester": "^11.0.4",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.24",
+    "eslint": "8.14.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-cypress": "2.12.1",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jam3": "0.2.3",
+    "eslint-plugin-json": "3.1.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-promise": "6.0.0",
+    "eslint-plugin-react": "7.29.4",
+    "eslint-plugin-react-hooks": "4.5.0",
+    "eslint-plugin-unused-imports": "2.0.0",
+    "husky": "^8.0.0",
     "jest": "^29.5.0",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.7",
     "ramda": "^0.29.0"
   }
 }
