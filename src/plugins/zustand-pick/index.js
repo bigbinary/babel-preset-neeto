@@ -1,6 +1,8 @@
 const { matches } = require("@bigbinary/neeto-commons-frontend/pure");
 const { last } = require("ramda");
-const { DECLARATOR_PATTERN } = require("./constants");
+
+const { PICK_GENERIC_PATTERN, PICK_STRICT_PATTERN } = require("./constants");
+
 const { addNamedImport } = require("../utils");
 
 const getPropertyAccessNode = (types, propertyPath) => {
@@ -30,7 +32,13 @@ module.exports = function ({ types }) {
       VariableDeclaration(astPath) {
         const declaratorPath = astPath.get("declarations.0");
         const declarator = declaratorPath.node;
-        if (!matches(DECLARATOR_PATTERN, declarator)) return;
+        if (!matches(PICK_GENERIC_PATTERN, declarator)) return;
+
+        if (!matches(PICK_STRICT_PATTERN, astPath.node)) {
+          throw astPath.buildCodeFrameError(
+            "Invalid use of zustand store pick method. You can find a list of allowed usages here: https://bit.ly/3UvzteH"
+          );
+        }
 
         const [argument] = declarator.init.arguments;
         let propertyPath;
@@ -64,6 +72,7 @@ module.exports = function ({ types }) {
             types.identifier("shallow"),
           ]
         );
+
         addNamedImport({
           path: astPath,
           types,

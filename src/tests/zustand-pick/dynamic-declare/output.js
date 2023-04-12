@@ -1,6 +1,6 @@
 import { shallow } from "zustand/shallow";
 const { [`customer ${id}`]: customer } = useGlobalStore(
-  (store) => ({
+  store => ({
     [`customer ${id}`]: store[sessionId]?.[`customer ${id}`],
   }),
   shallow

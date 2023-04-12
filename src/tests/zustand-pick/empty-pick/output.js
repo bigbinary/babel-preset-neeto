@@ -1,6 +1,6 @@
 import { shallow } from "zustand/shallow";
 const { order, customer } = useGlobalStore(
-  (store) => ({
+  store => ({
     order: store["order"],
     customer: store["customer"],
   }),
