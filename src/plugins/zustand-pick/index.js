@@ -79,6 +79,16 @@ module.exports = function ({ types }) {
           importName: "shallow",
         });
       },
+      CallExpression(astPath) {
+        // The variable declarator would have already transformed
+        // `useStore.pick()` by the time babel runs this.
+        // So no more `useStore.pick()` expressions should be seen anywhere.
+        // If we still can see such usage, it means that people are using
+        // `useStore.pick()` somewhere other than variable declaration.
+        if (matches(PICK_GENERIC_PATTERN.init, astPath.node)) {
+          throw astPath.buildCodeFrameError(INCORRECT_ZUSTAND_PICK_USAGE);
+        }
+      },
     },
   };
 };
