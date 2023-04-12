@@ -49,14 +49,14 @@ module.exports = function ({ types }) {
           propertyPath = argument.elements;
         } else return;
 
-        const toObjectProperty = ({ key }) =>
+        const toObjectProperty = ({ key, computed }) =>
           types.objectProperty(
             key,
             getPropertyAccessNode(types, [
               ...propertyPath,
-              key.type === "Identifier" ? types.stringLiteral(key.name) : key,
+              computed ? key : types.stringLiteral(key.name),
             ]),
-            key.type !== "Identifier"
+            computed
           );
 
         declarator.init = types.callExpression(
