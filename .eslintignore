@@ -1,1 +1,3 @@
-**/output.js
+src/tests/*/syntax-errors/*.js
+src/tests/*/no-changes/*.js
+src/tests/*/transformations/**/*.js

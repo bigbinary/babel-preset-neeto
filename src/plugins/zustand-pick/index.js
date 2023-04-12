@@ -3,6 +3,7 @@ const { last } = require("ramda");
 
 const { PICK_GENERIC_PATTERN, PICK_STRICT_PATTERN } = require("./constants");
 
+const { INCORRECT_ZUSTAND_PICK_USAGE } = require("../messages");
 const { addNamedImport } = require("../utils");
 
 const getPropertyAccessNode = (types, propertyPath) => {
@@ -35,9 +36,7 @@ module.exports = function ({ types }) {
         if (!matches(PICK_GENERIC_PATTERN, declarator)) return;
 
         if (!matches(PICK_STRICT_PATTERN, astPath.node)) {
-          throw astPath.buildCodeFrameError(
-            "Invalid use of zustand store pick method. You can find a list of allowed usages here: https://bit.ly/3UvzteH"
-          );
+          throw astPath.buildCodeFrameError(INCORRECT_ZUSTAND_PICK_USAGE);
         }
 
         const [argument] = declarator.init.arguments;

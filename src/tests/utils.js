@@ -1,19 +1,38 @@
+const fs = require("fs");
+const path = require("path");
+
 const { fromPairs } = require("ramda");
 
-const getPositiveCases = keys =>
+const getPositiveCases = dirName =>
   fromPairs(
-    keys.map(key => [`No change: ${key}`, { fixture: `no-changes/${key}.js` }])
+    fs
+      .readdirSync(path.join(dirName, "no-changes"))
+      .map(key => [`No change: ${key}`, { fixture: `no-changes/${key}` }])
   );
 
-const getNegativeCases = keys =>
+const getNegativeCases = dirName =>
   fromPairs(
-    keys.map(key => [
+    fs.readdirSync(path.join(dirName, "transformations")).map(key => [
       `Transform: ${key}`,
-      { fixture: `${key}/input.js`, outputFixture: `${key}/output.js` },
+      {
+        fixture: `transformations/${key}/input.js`,
+        outputFixture: `transformations/${key}/output.js`,
+      },
     ])
+  );
+
+const getIncorrectSyntaxCases = (dirName, error) =>
+  fromPairs(
+    fs
+      .readdirSync(path.join(dirName, "syntax-errors"))
+      .map(key => [
+        `Raise syntax error: ${key}`,
+        { fixture: `syntax-errors/${key}`, throws: error },
+      ])
   );
 
 module.exports = {
   getNegativeCases,
   getPositiveCases,
+  getIncorrectSyntaxCases,
 };
