@@ -96,31 +96,35 @@ syntax errors during transpilation.
 
 1. Nesting is not allowed in the variable declaration.
 
+   **incorrect**
+
    ```js
-   // incorrect
    const {
      order: { user },
    } = useGlobalStore.pick();
    ```
 
+   **correct**
+
    ```js
-   // correct
    const { order } = useGlobalStore.pick();
    const { user } = useGlobalStore.pick("order"); // to get nested item
    ```
 
 2. Expressions are not allowed in picking path array
 
+   **incorrect**
+
    ```js
-   // incorrect
    // expressions are not allowed
    const { user } = useGlobalStore.pick(["order", index + 1]);
    // string templates are not allowed
    const { user } = useGlobalStore.pick(["order", `#${orderId}`]);
    ```
 
+   **correct**
+
    ```js
-   // correct
    // only use literals of String, Numbers or Booleans
    // and variables as elements of the path array
    const indexPlusOne = index + 1;
@@ -129,13 +133,15 @@ syntax errors during transpilation.
 
 3. Pick only accepts a single parameter:
 
+   **incorrect**
+
    ```js
-   // incorrect
    const { user } = useGlobalStore.pick("order", "user");
    ```
 
+   **correct**
+
    ```js
-   // correct
    // use arrays to specify nested path
    const { name } = useGlobalStore.pick(["order", "user"]);
    // use key directly to get its nested properties.
@@ -143,3 +149,9 @@ syntax errors during transpilation.
    // pass no arguments to get the top level properties
    const { order, setOrder } = useGlobalStore.pick();
    ```
+
+4. You might also encounter errors if some other plugin transforms the code
+   before babel-plugin-neeto. If your syntax is correct, and you are still
+   getting errors, check for other babel-plugins or babel-presets transforming
+   your code before we do. **babel-plugin-neeto expects that it runs first on
+   the code before any other plugin performs transformations.**
