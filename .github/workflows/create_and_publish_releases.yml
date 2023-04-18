@@ -26,6 +26,9 @@ jobs:
         with:
           node-version-file: ".nvmrc"
 
+      - name: Setup the project
+        run: yarn install
+
       - name: Prefix version tag with "v"
         run: yarn config set version-tag-prefix "v"
 
