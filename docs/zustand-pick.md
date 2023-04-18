@@ -1,5 +1,7 @@
 # Zustand pick transformer
 
+## Motivation
+
 When we wanted to pick some properties from a zustand store, this is what we
 need to do:
 

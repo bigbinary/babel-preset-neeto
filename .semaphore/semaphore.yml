@@ -1,0 +1,32 @@
+version: v1.0
+name: cicheck
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+auto_cancel:
+  running:
+    when: "branch != 'main'"
+fail_fast:
+  stop:
+    when: "true"
+global_job_config:
+  prologue:
+    commands:
+      - checkout
+      - sem-version node 18.12
+      - yarn install
+  env_vars:
+    - name: ENV
+      value: test
+blocks:
+  - name: Code lints and tests
+    task:
+      jobs:
+        - name: ESLint
+          commands:
+            - ".scripts/run_eslint_on_modified_files.sh"
+        - name: Tests
+          commands:
+            - "yarn test"
+    dependencies: []
