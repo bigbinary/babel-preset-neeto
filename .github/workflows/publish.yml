@@ -16,6 +16,9 @@ jobs:
         with:
           node-version: "18.12.0"
 
+      - name: Setup the project
+        run: yarn install
+
       - name: Publish the package on NPM
         uses: JS-DevTools/npm-publish@v1
         with:
