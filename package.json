@@ -1,6 +1,6 @@
 {
   "name": "@bigbinary/babel-preset-neeto",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A babel preset to transform short code to boilerplate at compile time",
   "main": "index.js",
   "scripts": {
