@@ -152,8 +152,39 @@ syntax errors during transpilation.
    const { order, setOrder } = useGlobalStore.pick();
    ```
 
-4. You might also encounter errors if some other plugin transforms the code
-   before babel-plugin-neeto. If your syntax is correct, and you are still
-   getting errors, check for other babel-plugins or babel-presets transforming
-   your code before we do. **babel-plugin-neeto expects that it runs first on
-   the code before any other plugin performs transformations.**
+## Notes
+
+#### All nested property access are optional chained
+
+No need to worry if any of the properties in your store nesting may be
+null/undefined. This transformer adds optional chaining in all levels of
+nesting. That is:
+
+```js
+const { order, customer } = useGlobalStore.pick([sessionId, "globals"]);
+```
+
+Will be transformed to:
+
+```js
+import { shallow } from "zustand/shallow";
+const { order, customer } = useGlobalStore(
+  store => ({
+    order: store[sessionId]?.["globals"]?.["order"],
+    customer: store[sessionId]?.["globals"]?.["customer"],
+  }),
+  shallow
+);
+```
+
+So your code won't fail if `store[sessionId]` is null or
+`store[sessionId].globals` is null.
+
+#### This plugin should run on user's code
+
+You might encounter errors if some other plugin transforms the code before
+babel-plugin-neeto. **babel-plugin-neeto expects that it runs first on the code
+before any other plugin performs transformations.**
+
+If your zustand-pick syntax is correct, and you are still getting errors, check
+for other babel-plugins or babel-presets transforming your code before we do.
