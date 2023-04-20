@@ -44,7 +44,6 @@ const PICK_GENERIC_PATTERN = {
 
 const PICK_STRICT_PATTERN = {
   type: "VariableDeclaration",
-  kind: "const",
   declarations: matchesWithLength([
     mergeDeepLeft(
       {
