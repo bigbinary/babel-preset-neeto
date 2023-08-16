@@ -1,7 +1,5 @@
 version: v1.0
 plan: standard
-trigger:
-  - event: "pull_request"
 name: neetoCi
 global_job_config:
   setup:
