@@ -10,14 +10,14 @@ const VALID_ARRAY_ELEMENT_TYPES = [
   "BooleanLiteral",
 ];
 
-const VALID_PICK_ARGUMENT_TYPES = [
+const VALID_PICK_FROM_ARGUMENT_TYPES = [
   "StringLiteral",
   "Identifier",
   "ArrayExpression",
 ];
 
-const VALID_PICK_ARGUMENT = {
-  type: includes(__, VALID_PICK_ARGUMENT_TYPES),
+const VALID_PICK_FROM_ARGUMENT = {
+  type: includes(__, VALID_PICK_FROM_ARGUMENT_TYPES),
   elements: (elements, root) =>
     root.type !== "ArrayExpression" ||
     elements.every(({ type }) => VALID_ARRAY_ELEMENT_TYPES.includes(type)),
@@ -51,7 +51,7 @@ const PICK_FROM_STRICT_PATTERN = {
         init: {
           arguments: args =>
             isEmpty(args) ||
-            (args.length === 1 && matches(VALID_PICK_ARGUMENT, args[0])),
+            (args.length === 1 && matches(VALID_PICK_FROM_ARGUMENT, args[0])),
         },
       },
       PICK_FROM_GENERIC_PATTERN
