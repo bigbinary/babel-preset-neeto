@@ -23,6 +23,7 @@ const VALID_PICK_FROM_ARGUMENT = {
     elements.every(({ type }) => VALID_ARRAY_ELEMENT_TYPES.includes(type)),
 };
 
+// <any variable declaration> = useStore.pickFrom()
 const PICK_FROM_GENERIC_PATTERN = {
   type: "VariableDeclarator",
   init: {
@@ -32,7 +33,7 @@ const PICK_FROM_GENERIC_PATTERN = {
       computed: false,
       object: {
         type: "Identifier",
-        name: test(/^use[a-zA-Z0-9]+Store$/),
+        name: test(/^use[a-zA-Z0-9]*Store$/),
       },
       property: {
         type: "Identifier",
@@ -42,6 +43,7 @@ const PICK_FROM_GENERIC_PATTERN = {
   },
 };
 
+// const value = useStore.pickFrom() or const value = useStore.pickFrom(argument)
 const PICK_FROM_STRICT_PATTERN = {
   type: "VariableDeclaration",
   declarations: matchesWithLength([

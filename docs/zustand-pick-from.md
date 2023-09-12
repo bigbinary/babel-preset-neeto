@@ -16,7 +16,7 @@ bundling, the following is generated:
 ```js
 import { shallow } from "zustand/shallow";
 
-const { order, customer } = useGlobalStore(
+const { order } = useGlobalStore(
   store => ({ order: store[sessionId]?.globals.order }),
   shallow
 );
@@ -37,7 +37,7 @@ This will generate the following:
 
 ```js
 const order = useGlobalStore.pickFrom(
-  store => store[sessionId]?.globals?.order
+  store => store[sessionId]?.["globals"]?.order
 );
 ```
 

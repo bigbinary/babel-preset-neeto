@@ -32,7 +32,7 @@ const PICK_GENERIC_PATTERN = {
       computed: false,
       object: {
         type: "Identifier",
-        name: test(/^use[a-zA-Z0-9]+Store$/),
+        name: test(/^use[a-zA-Z0-9]*Store$/),
       },
       property: {
         type: "Identifier",
