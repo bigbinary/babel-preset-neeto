@@ -75,6 +75,9 @@ const { order, setOrder } = useGlobalStore.pick();
 // picks `id` and `user` from inside store.order
 const { id, user } = useGlobalStore.pick("order");
 
+// supports default values
+const { user = {} } = useGlobalStore.pick();
+
 // picks `quantity` of dynamically obtained item of id `itemId`
 const { quantity } = useGlobalStore.pick(["order", "items", itemId]);
 

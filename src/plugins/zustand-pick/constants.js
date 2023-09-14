@@ -53,7 +53,9 @@ const PICK_STRICT_PATTERN = {
             matches({
               type: "ObjectProperty",
               method: false,
-              value: { type: "Identifier" },
+              value: {
+                type: includes(__, ["Identifier", "AssignmentPattern"]),
+              },
             })
           ),
         },
