@@ -42,6 +42,7 @@ module.exports = {
 ## Available plugins
 
 - [zustand-pick](https://github.com/bigbinary/babel-preset-neeto/blob/main/docs/zustand-pick.md)
+- [zustand-pick-from](https://github.com/bigbinary/babel-preset-neeto/blob/main/docs/zustand-pick-from.md)
 
 ## Other links
 
