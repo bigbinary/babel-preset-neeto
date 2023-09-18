@@ -1,6 +1,7 @@
 version: v1.0
+
 plan: standard-2
-name: neetoCi
+
 global_job_config:
   setup:
     - checkout
@@ -13,3 +14,8 @@ global_job_config:
       commands:
         - .scripts/run_eslint_on_modified_files.sh
         - yarn test
+
+triggers:
+  - event: branch
+    branch_name: main
+  - event: pull_request
