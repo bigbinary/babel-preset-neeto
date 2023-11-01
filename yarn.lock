@@ -1109,6 +1109,11 @@
   resolved "https://registry.yarnpkg.com/@bigbinary/eslint-plugin-neeto/-/eslint-plugin-neeto-1.0.30.tgz#a665ae8e9e0475cf070b9ed9ce2e012b994f85d0"
   integrity sha512-C+KxbbxySIh7Jir3E6iCdKfj7sHYNrdy+BZSA3OCVLS36hrkPqrtnh3JX8l69HgIoba4hDHQZIhMxNqqMO+mIQ==
 
+"@bigbinary/neeto-cist@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@bigbinary/neeto-cist/-/neeto-cist-1.0.4.tgz#13d864e59fa3dcd9d52af88aa6fbcc908c4e9379"
+  integrity sha512-zMpCuHoUUJtjd7k5lCB5L7uhzl4nMLDAWoe5E8J/nQWUTEOAIl9rziA0tX0wOW8IT5ICtLnf2tquc3WqeRMyfw==
+
 "@bigbinary/neeto-commons-frontend@^2.0.63":
   version "2.0.63"
   resolved "https://registry.yarnpkg.com/@bigbinary/neeto-commons-frontend/-/neeto-commons-frontend-2.0.63.tgz#4876a661b596409b3a66d3633a012cb96d22f531"

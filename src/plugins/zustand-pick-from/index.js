@@ -1,4 +1,4 @@
-const { matches } = require("@bigbinary/neeto-commons-frontend/pure");
+const { matches } = require("@bigbinary/neeto-cist");
 const { last } = require("ramda");
 
 const {
