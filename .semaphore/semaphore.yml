@@ -14,7 +14,7 @@ global_job_config:
   prologue:
     commands:
       - checkout
-      - sem-version node 18.12
+      - sem-version node 22.13
       - yarn install
   env_vars:
     - name: ENV
