@@ -1,6 +1,5 @@
 version: v1.0
 fail_fast: true
-is_cypress: false
 plan: standard-2
 
 triggers:
