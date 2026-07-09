@@ -2,6 +2,22 @@ version: v1.0
 
 plan: standard-2
 
+paths:
+  - src/**
+  - index.js
+  - .scripts/**
+  - .neetoci/default.yml
+  - package.json
+  - yarn.lock
+  - .node-version
+  - .nvmrc
+  - .eslintignore
+  - .eslintrc.js
+  - .prettierignore
+  - .prettierrc.js
+  - jsconfig.json
+  - "*.config.*"
+
 global_job_config:
   setup:
     - checkout
