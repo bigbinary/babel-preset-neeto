@@ -26,6 +26,9 @@
     ],
     "*.md": [
       "prettier --write"
+    ],
+    "{README.md,docs/**/*.md}": [
+      "prettier --write"
     ]
   },
   "keywords": [
