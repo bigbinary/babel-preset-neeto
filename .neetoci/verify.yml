@@ -6,7 +6,7 @@ paths:
   - src/**
   - index.js
   - .scripts/**
-  - .neetoci/default.yml
+  - .neetoci/verify.yml
   - package.json
   - yarn.lock
   - .node-version
